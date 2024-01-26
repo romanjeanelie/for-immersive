@@ -26,7 +26,7 @@ export default class Renderer {
   }
 
   setInstance() {
-    this.clearColor = "#010101";
+    this.clearColor = "#101";
 
     // Renderer
     this.instance = new THREE.WebGLRenderer({
@@ -74,8 +74,7 @@ export default class Renderer {
         })
         .onChange(() => {
           this.scene.traverse((_child) => {
-            if (_child instanceof THREE.Mesh)
-              _child.material.needsUpdate = true;
+            if (_child instanceof THREE.Mesh) _child.material.needsUpdate = true;
           });
         });
 
@@ -89,34 +88,22 @@ export default class Renderer {
     /**
      * Render pass
      */
-    this.postProcess.renderPass = new RenderPass(
-      this.scene,
-      this.camera.instance,
-    );
+    this.postProcess.renderPass = new RenderPass(this.scene, this.camera.instance);
 
     /**
      * Effect composer
      */
     const RenderTargetClass =
-      this.config.pixelRatio >= 2
-        ? THREE.WebGLRenderTarget
-        : THREE.WebGLMultisampleRenderTarget;
+      this.config.pixelRatio >= 2 ? THREE.WebGLRenderTarget : THREE.WebGLMultisampleRenderTarget;
     // const RenderTargetClass = THREE.WebGLRenderTarget
-    this.renderTarget = new RenderTargetClass(
-      this.config.width,
-      this.config.height,
-      {
-        generateMipmaps: false,
-        minFilter: THREE.LinearFilter,
-        magFilter: THREE.LinearFilter,
-        format: THREE.RGBFormat,
-        encoding: THREE.sRGBEncoding,
-      },
-    );
-    this.postProcess.composer = new EffectComposer(
-      this.instance,
-      this.renderTarget,
-    );
+    this.renderTarget = new RenderTargetClass(this.config.width, this.config.height, {
+      generateMipmaps: false,
+      minFilter: THREE.LinearFilter,
+      magFilter: THREE.LinearFilter,
+      format: THREE.RGBFormat,
+      encoding: THREE.sRGBEncoding,
+    });
+    this.postProcess.composer = new EffectComposer(this.instance, this.renderTarget);
     this.postProcess.composer.setSize(this.config.width, this.config.height);
     this.postProcess.composer.setPixelRatio(this.config.pixelRatio);
 
