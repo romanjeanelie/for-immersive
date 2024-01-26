@@ -11,12 +11,23 @@ export default class Lines {
     this.domEl = document.querySelector(".dom");
 
     // Config
-    this.scaleTarget = { x: 0.7, y: 0.9, z: 0.7 };
+    this.amplitudeRotation = { value: 0.3 };
+    this.groupConfig = {
+      start: {
+        position: { x: 0, y: 0, z: 0 },
+        scale: { x: 0.9, y: 0.9, z: 0.9 },
+        rotation: { x: 0, y: 4, z: Math.PI * 0 },
+      },
+      target: {
+        position: { x: 0, y: 0, z: 0 },
+        scale: { x: 0.7, y: 0.9, z: 0.7 },
+        rotation: { x: 0, y: 0, z: Math.PI * 0.5 },
+      },
+    };
 
     this.numberOfLines = projects.length - 1;
     this.positions = { x: 0, y: 0, z: 0 };
     this.rows = [];
-    this.amplitudeRotation = { value: 0.5 };
     this.viewportSizes = { x: 0, y: 0 };
 
     this.experience = new Experience();
@@ -32,11 +43,12 @@ export default class Lines {
     this.computeViewportSizes();
     this.updateDOM();
     this.setInstance();
+    this.startAnim();
   }
 
   // TODO revert x and y for lines
   updateDOM() {
-    this.domEl.style.transform = `scale(${this.scaleTarget.y}, ${this.scaleTarget.x})`;
+    this.domEl.style.transform = `scale(${this.groupConfig.target.scale.y}, ${this.groupConfig.target.scale.x})`;
 
     // Create points
     const points = [];
@@ -61,13 +73,6 @@ export default class Lines {
     this.group = new THREE.Group();
 
     var tubeGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 32);
-    // tubeGeometry.translate(0, 0.5, 0);
-    // Compute the bounding box of the geometry
-    // tubeGeometry.computeBoundingBox();
-    // Get the height (y dimension) of the bounding box
-    // let height = tubeGeometry.boundingBox.max.y - tubeGeometry.boundingBox.min.y;
-    // Translate the tubeGeometry so that the origin is at the bottom
-    // tubeGeometry.translate(0, height / 2, 0);
 
     var cylinderMaterial = new THREE.MeshBasicMaterial({ color: cylinderColor });
 
@@ -80,17 +85,22 @@ export default class Lines {
       this.group.add(cylinder);
     });
     this.positionLines();
-    this.group.scale.set(0.9, 0.9, 0.9);
-    this.group.rotation.z = -Math.PI * 0.01;
+
+    this.group.scale.set(
+      this.groupConfig.start.scale.x,
+      this.groupConfig.start.scale.y,
+      this.groupConfig.start.scale.z
+    );
+    this.group.rotation.set(
+      this.groupConfig.start.rotation.x,
+      this.groupConfig.start.rotation.y,
+      this.groupConfig.start.rotation.z
+    );
+
     this.scene.add(this.group);
+  }
 
-    // TEMP final position
-    // this.amplitudeRotation.value = 0;
-    // this.group.scale.x = 0.7;
-    // this.group.scale.y = 0.9;
-    // this.group.scale.z = 0.7;
-    // this.group.rotation.z = Math.PI * 0.5;
-
+  startAnim() {
     gsap.to(this.amplitudeRotation, {
       value: 0,
       delay: 0.1,
@@ -98,19 +108,19 @@ export default class Lines {
       ease: "power2.out",
     });
     gsap.to(this.group.scale, {
-      ...this.scaleTarget,
+      ...this.groupConfig.target.scale,
       delay: 0.1,
       duration: 3,
       ease: "power1.inOut",
     });
     gsap.to(this.group.rotation, {
-      x: 0,
-      y: 0,
+      x: this.groupConfig.target.rotation.x,
+      y: this.groupConfig.target.rotation.y,
       duration: 5,
       ease: "power1.inOut",
     });
     gsap.to(this.group.rotation, {
-      z: Math.PI * 0.5,
+      z: this.groupConfig.target.rotation.z,
       delay: 0.1,
       duration: 3,
       ease: "power2.inOut",
@@ -120,12 +130,11 @@ export default class Lines {
     this.rows.forEach((row, i) => {
       gsap.to(row.mesh.position, {
         y: row.target.position.y,
-        delay: 1.6,
+        delay: 2.6,
         duration: 3,
         ease: "expo.inOut",
         onComplete: () => {
           this.isAnimComplete = true;
-          //   this.domEl.classList.add("show");
         },
       });
 
@@ -218,8 +227,6 @@ export default class Lines {
   }
 
   update() {
-    // this.holder.rotation.x += 0.0;
-    // this.holder.rotation.y += 0.01;
     this.rows.forEach((row, i) => {
       row.mesh.rotation.y = i * this.amplitudeRotation.value;
     });
