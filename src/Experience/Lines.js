@@ -58,8 +58,8 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    // this.startAnim();
-    this.goToFinalPosition();
+    this.startAnim();
+    // this.goToFinalPosition();
   }
 
   // TODO revert x and y for lines
@@ -127,6 +127,7 @@ export default class Lines {
   }
 
   startAnim() {
+    document.body.classList.remove("loading");
     this.animPresentation();
     const tl = gsap.timeline();
     // Anim group
@@ -223,12 +224,12 @@ export default class Lines {
   animPresentation() {
     gsap.fromTo(
       [".presentation h1", ".presentation h2", ".presentation p"],
-      { opacity: 0, yPercent: -60 },
+      { opacity: 0, yPercent: -35 },
       {
         yPercent: 0,
         opacity: 1,
         stagger: 0.1,
-        delay: 6,
+        delay: 5.5,
         duration: 3,
         ease: "power3.inOut",
       }

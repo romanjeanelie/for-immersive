@@ -102,7 +102,7 @@
 		"title": "3D Glass effect",
 		"date": "2024-01-09",
 		"type": "lab",
-		"top": 0.52,
+		"top": 0.5,
 		"descriptionDirection": "left",
 		"url": "https://glass-effect-m3wr.vercel.app/"
 	},
@@ -110,7 +110,7 @@
 		"title": "Trail effect",
 		"date": "2024-01-25",
 		"type": "lab",
-		"top": 0.62,
+		"top": 0.6,
 		"descriptionDirection": "left",
 		"url": "https://texture-plane.vercel.app"
 	}

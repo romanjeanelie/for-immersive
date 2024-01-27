@@ -12,6 +12,10 @@ body {
   background: $colorBackground;
 }
 
+body.loading {
+  opacity: 0;
+}
+
 .experience {
   position: fixed;
   width: 100vw;

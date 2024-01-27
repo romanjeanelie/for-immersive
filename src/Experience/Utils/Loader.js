@@ -47,20 +47,6 @@ export default class Resources extends EventEmitter {
       },
     });
 
-    // Basis images
-    const basisLoader = new BasisTextureLoader();
-    basisLoader.setTranscoderPath("basis/");
-    basisLoader.detectSupport(this.renderer);
-
-    this.loaders.push({
-      extensions: ["basis"],
-      action: (_resource) => {
-        basisLoader.load(_resource.source, (_data) => {
-          this.fileLoadEnd(_resource, _data);
-        });
-      },
-    });
-
     // Draco
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath("draco/");
@@ -126,7 +112,7 @@ export default class Resources extends EventEmitter {
       if (typeof extensionMatch[1] !== "undefined") {
         const extension = extensionMatch[1];
         const loader = this.loaders.find((_loader) =>
-          _loader.extensions.find((_extension) => _extension === extension),
+          _loader.extensions.find((_extension) => _extension === extension)
         );
 
         if (loader) {
