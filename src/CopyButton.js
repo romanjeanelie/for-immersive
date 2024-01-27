@@ -1,9 +1,12 @@
 export default class CopyButton {
   constructor(_options) {
     this.element = _options.element;
+    this.textEl = this.element.querySelector("p");
     this.text = _options.text;
     this.successText = _options.successText;
     this.errorText = _options.errorText;
+    this.previousText = this.textEl.textContent;
+
     this.copy = this.copy.bind(this);
     this.init();
   }
@@ -13,7 +16,7 @@ export default class CopyButton {
   }
   copy() {
     if (!navigator.clipboard) {
-      this.element.innerHTML = this.errorText;
+      this.textEl.textContent = this.errorText;
       return;
     }
 
@@ -21,17 +24,17 @@ export default class CopyButton {
       .writeText(this.text)
       .then(() => {
         console.log("success");
-        this.element.innerHTML = this.successText;
+        this.textEl.textContent = this.successText;
         setTimeout(() => {
-          this.element.innerHTML = this.text;
-        }, 2000);
+          this.textEl.textContent = this.previousText;
+        }, 300);
       })
       .catch((e) => {
         console.log(e);
-        this.element.innerHTML = this.errorText;
+        this.textEl.textContent = this.errorText;
         setTimeout(() => {
-          this.element.innerHTML = this.text;
-        }, 2000);
+          this.textEl.textContent = this.previousText;
+        }, 300);
       });
   }
 }
