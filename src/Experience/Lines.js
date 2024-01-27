@@ -50,6 +50,7 @@ export default class Lines {
     this.setInstance();
 
     this.startAnim();
+    this.goToFinalPosition();
   }
 
   // TODO revert x and y for lines
@@ -138,12 +139,12 @@ export default class Lines {
       ease: "power2.inOut",
     });
 
-    // Move
+    // Anim Lines
     this.linesInstances.forEach((line, i) => {
       line.animIn();
     });
 
-    // show points
+    // Anim points
     gsap.to(".point", {
       opacity: 1,
       delay: 3.4,
@@ -154,6 +155,24 @@ export default class Lines {
         grid: "auto",
         ease: "power2.inOut",
       },
+    });
+  }
+
+  goToFinalPosition() {
+    this.group.scale.set(
+      this.groupConfig.target.scale.x,
+      this.groupConfig.target.scale.y,
+      this.groupConfig.target.scale.z
+    );
+    this.group.rotation.set(
+      this.groupConfig.target.rotation.x,
+      this.groupConfig.target.rotation.y,
+      this.groupConfig.target.rotation.z
+    );
+    this.amplitudeRotation.value = 0;
+
+    this.linesInstances.forEach((line, i) => {
+      line.goToFinalPosition();
     });
   }
 

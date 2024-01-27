@@ -75,6 +75,16 @@ export default class Line {
     });
   }
 
+  goToFinalPosition() {
+    this.mesh.position.set(
+      this.viewportSizes.y / 2 - (this.viewportSizes.y * this.target.scale.y) / 2,
+      this.target.position.y,
+      0
+    );
+
+    this.mesh.scale.y = this.viewportSizes.y * this.target.scale.y;
+  }
+
   resize(viewportSizes) {
     this.viewportSizes = viewportSizes;
     this.positionLine();
