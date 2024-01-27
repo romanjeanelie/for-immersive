@@ -27,14 +27,14 @@ export default class CopyButton {
         this.textEl.textContent = this.successText;
         setTimeout(() => {
           this.textEl.textContent = this.previousText;
-        }, 300);
+        }, 1000);
       })
       .catch((e) => {
         console.log(e);
         this.textEl.textContent = this.errorText;
         setTimeout(() => {
           this.textEl.textContent = this.previousText;
-        }, 300);
+        }, 1000);
       });
   }
 }

@@ -12,7 +12,7 @@ const textToCopy = projects
     return `[${project.title}](${project.url})`;
   })
   .filter(Boolean)
-  .join("\n");
+  .join("\n\n");
 
 const buttonLinks = document.querySelector("#button-links");
 new CopyButton({ element: buttonLinks, text: textToCopy, successText: "COPIED", errorText: "" });
