@@ -1,14 +1,27 @@
 import projects from "../../../projects.json";
 
 export function getDistance(i) {
-  const projectsByDate = projects.sort((a, b) => {
-    return new Date(a.date) - new Date(b.date);
-  });
-  const firstProject = projectsByDate[0];
-  const lastProject = projectsByDate[projectsByDate.length - 1];
+  const firstProject = projects[0];
+  const lastProject = projects[projects.length - 1];
   const maxDistanceDate = new Date(lastProject.date) - new Date(firstProject.date);
   const project = projects[i];
-  const distance = (new Date(project.date) - new Date(projectsByDate[0].date)) / maxDistanceDate;
+  const distance = (new Date(project.date) - new Date(projects[0].date)) / maxDistanceDate;
+  return distance;
+}
+
+export function getDistanceProjectByYear(year) {
+  const firstProject = projects[0];
+  const lastProject = projects[projects.length - 1];
+  const maxDistanceDate = new Date(lastProject.date) - new Date(firstProject.date);
+  const distance = (new Date(year) - new Date(projects[0].date)) / maxDistanceDate;
+  return distance;
+}
+
+export function getDistanceBetweenTwoYears(year1, year2) {
+  const firstProject = projects[0];
+  const lastProject = projects[projects.length - 1];
+  const maxDistanceDate = new Date(lastProject.date) - new Date(firstProject.date);
+  const distance = (new Date(year1) - new Date(year2)) / maxDistanceDate;
   return distance;
 }
 

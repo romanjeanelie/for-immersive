@@ -2,6 +2,9 @@ import Experience from "./Experience";
 import Line from "./Line";
 import Years from "./Years";
 
+// Utils
+import { getDistance, getScaleY } from "./Utils/LinesUtils";
+
 import * as THREE from "three";
 import gsap from "gsap";
 import projects from "../../projects.json";
@@ -45,12 +48,12 @@ export default class Lines {
     // this.debugPlane();
     this.computeViewportSizes();
 
-    this.setPoints();
     this.setYears();
+    this.setPoints();
     this.setInstance();
 
     this.startAnim();
-    this.goToFinalPosition();
+    // this.goToFinalPosition();
   }
 
   // TODO revert x and y for lines
@@ -59,12 +62,12 @@ export default class Lines {
 
     // Create points
     const points = [];
-    this.projects.forEach((_, i) => {
+    this.projects.forEach((project, i) => {
+      const distance = getDistance(i);
+      const scaleY = getScaleY(i);
+
       const pointEl = document.createElement("span");
       pointEl.classList.add("point");
-
-      const distance = this.getDistance(i);
-      const scaleY = this.getScaleY(i);
 
       pointEl.style.top = `${scaleY * 100}%`;
       pointEl.style.left = `${distance * 100}%`;
@@ -75,7 +78,7 @@ export default class Lines {
   }
 
   setYears() {
-    this.yearsDOM = new Years();
+    this.years = new Years({ domEl: this.domEl });
   }
 
   setInstance() {
@@ -129,13 +132,13 @@ export default class Lines {
     gsap.to(this.group.rotation, {
       x: this.groupConfig.target.rotation.x,
       y: this.groupConfig.target.rotation.y,
-      duration: 5,
+      duration: 3,
       ease: "power1.inOut",
     });
     gsap.to(this.group.rotation, {
       z: this.groupConfig.target.rotation.z,
       delay: 0.1,
-      duration: 3,
+      duration: 2,
       ease: "power2.inOut",
     });
 
@@ -156,6 +159,9 @@ export default class Lines {
         ease: "power2.inOut",
       },
     });
+
+    // Anim years
+    this.years.animIn({ delay: 3 });
   }
 
   goToFinalPosition() {
@@ -174,32 +180,6 @@ export default class Lines {
     this.linesInstances.forEach((line, i) => {
       line.goToFinalPosition();
     });
-  }
-
-  getDistance(i) {
-    const projectsByDate = this.projects.sort((a, b) => {
-      return new Date(a.date) - new Date(b.date);
-    });
-    const firstProject = projectsByDate[0];
-    const lastProject = projectsByDate[projectsByDate.length - 1];
-    const maxDistanceDate = new Date(lastProject.date) - new Date(firstProject.date);
-    const project = this.projects[i];
-    const distance = (new Date(project.date) - new Date(projectsByDate[0].date)) / maxDistanceDate;
-    return distance;
-  }
-
-  getScaleY(i) {
-    const project = this.projects[i];
-    switch (project.type) {
-      case "personal":
-        return 0.5;
-      case "pro":
-        return 0.8;
-      case "lab":
-        return 0.3;
-      case "indicator":
-        return 1;
-    }
   }
 
   computeViewportSizes() {
