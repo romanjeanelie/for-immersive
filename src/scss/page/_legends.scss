@@ -4,13 +4,6 @@ $legend-colors: (
   "lab": $lab,
 );
 
-.bottom {
-  position: fixed;
-  bottom: $paddinVert;
-  width: 100%;
-  display: flex;
-}
-
 .legends {
   position: fixed;
   bottom: 20px;
@@ -18,6 +11,10 @@ $legend-colors: (
   display: flex;
   gap: 80px;
   margin-right: 20%;
+
+  @include media("<phone") {
+    display: none;
+  }
 }
 
 .legend {

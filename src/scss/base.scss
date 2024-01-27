@@ -9,6 +9,7 @@ body {
   overflow: hidden;
   color: $colorMain;
   height: 100%;
+  background: $colorBackground;
 }
 
 .experience {
@@ -42,5 +43,41 @@ body {
     display: block;
     margin-top: 12px;
     color: rgba($colorMain, 0.6);
+  }
+
+  @include media("<tablet") {
+    display: none;
+  }
+}
+
+@include media("<phone") {
+  .dom {
+    display: none;
+  }
+
+  .experience {
+    display: none;
+  }
+}
+
+.rotate-device {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $colorBackground;
+  z-index: 999;
+  color: rgba($colorMain, 0.6);
+  justify-content: center;
+  align-items: center;
+  font-size: vwM(10);
+
+  display: none;
+
+  @include media("<tablet") {
+    @media (orientation: landscape) {
+      display: flex;
+    }
   }
 }

@@ -79,7 +79,7 @@
 		"date": "2023-10-01",
 		"type": "perso",
 		"descriptionDirection": "left",
-		"top": 0.1,
+		"top": 0,
 		"url": "https://romanjeanelie.com/"
 	},
 	{
@@ -87,14 +87,14 @@
 		"date": "2023-11-02",
 		"type": "lab",
 		"descriptionDirection": "left",
-		"top": 0.5,
+		"top": 0.3,
 		"url": "https://infinite-slider-pink.vercel.app/"
 	},
 	{
 		"title": "3D Fur",
 		"date": "2023-12-10",
 		"type": "lab",
-		"top": 0.6,
+		"top": 0.4,
 		"descriptionDirection": "left",
 		"url": "https://fur-theta.vercel.app/"
 	},
@@ -102,14 +102,16 @@
 		"title": "3D Glass effect",
 		"date": "2024-01-09",
 		"type": "lab",
-		"top": 0.6,
+		"top": 0.52,
+		"descriptionDirection": "left",
 		"url": "https://glass-effect-m3wr.vercel.app/"
 	},
 	{
 		"title": "Trail effect",
 		"date": "2024-01-25",
 		"type": "lab",
-		"top": 0.5,
+		"top": 0.62,
+		"descriptionDirection": "left",
 		"url": "https://texture-plane.vercel.app"
 	}
 ]
