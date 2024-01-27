@@ -58,8 +58,8 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    this.startAnim();
-    // this.goToFinalPosition();
+    // this.startAnim();
+    this.goToFinalPosition();
   }
 
   // TODO revert x and y for lines
@@ -178,7 +178,7 @@ export default class Lines {
       {
         opacity: 1,
         scale: 1,
-        duration: 2,
+        duration: 1.4,
         ease: "power2.out",
         stagger: {
           each: 0.1,
@@ -186,7 +186,7 @@ export default class Lines {
           grid: "auto",
         },
       },
-      "-=2.5"
+      "-=1.5"
     );
 
     // Anim years

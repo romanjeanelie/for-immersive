@@ -6,7 +6,7 @@ $legend-colors: (
 
 .bottom {
   position: fixed;
-  bottom: 20px;
+  bottom: $paddinVert;
   width: 100%;
   display: flex;
 }
