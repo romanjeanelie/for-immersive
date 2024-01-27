@@ -15,4 +15,5 @@ const textToCopy = projects
   .join("\n");
 
 const buttonLinks = document.querySelector("#button-links");
-new CopyButton({ element: buttonLinks, text: textToCopy, successText: "Copied!", errorText: "" });
+new CopyButton({ element: buttonLinks, text: textToCopy, successText: "COPIED", errorText: "" });
+console.log(textToCopy);
