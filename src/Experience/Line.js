@@ -1,6 +1,6 @@
 import * as THREE from "three";
 import gsap from "gsap";
-
+import colors from "@/scss/variables/_colors.module.scss";
 // Utils
 import { getDistance, getScaleY } from "./Utils/LinesUtils";
 
@@ -27,11 +27,18 @@ export default class Line {
 
   create() {
     const { geometry, material } = this.options;
-    this.mesh = new THREE.Mesh(geometry, material);
+    this.mesh = new THREE.Mesh(geometry, material.clone());
     this.mesh.rotation.z = (90 * Math.PI) / 180;
 
     this.options.group.add(this.mesh);
+    this.setColor();
     this.positionLine();
+  }
+
+  setColor() {
+    const { project } = this.options;
+    this.mesh.material.uniforms.uColor.value = new THREE.Color(colors[project.type]);
+    this.mesh.material.uniforms.uOpacity.value = project.type === "indicator" ? 0.2 : 1;
   }
 
   positionLine() {
@@ -73,6 +80,14 @@ export default class Line {
       duration: 2,
       ease: "power2.inOut",
     });
+
+    // Colors
+    gsap.to(this.mesh.material.uniforms.uColorProgress, {
+      value: 1,
+      delay: 2,
+      duration: 2,
+      ease: "power2.inOut",
+    });
   }
 
   goToFinalPosition() {
@@ -83,6 +98,10 @@ export default class Line {
     );
 
     this.mesh.scale.y = this.viewportSizes.y * this.target.scale.y;
+
+    gsap.set(this.mesh.material.uniforms.uColorProgress, {
+      value: 1,
+    });
   }
 
   resize(viewportSizes) {

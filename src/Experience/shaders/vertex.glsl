@@ -28,21 +28,6 @@ float stroke(float x, float size, float w) {
 void main() {
 	vec3 newposition = position;
 
-  // Progress
-	float progress = sin(uTime * 0.0005);
-
-	// Direction
-	float direction = -1.0;
-
-    // Zone y
-	float zoneY = stroke(position.y, (uMouse.y * 0.5), .2);
-
-    // Waves
-	float amplitude = 0.7 * uMouse.x;
-	float yOffset = progress * 0.5;
-	float waves = cos((position.y + yOffset) * PI * 0.25) * amplitude * zoneY;
-
-	newposition.x += waves;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition, 1.0);
 
 	vUv = uv;

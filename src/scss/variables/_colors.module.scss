@@ -1,7 +1,14 @@
-$pink: #de5888;
-$blue: #45499a;
-$brown: #876446;
+$colorMain: rgb(236, 236, 236);
+$colorBackground: #111;
+$lineColorStart: #662708;
+$pro: #935209;
+$perso: #7994ad;
+$lab: #978066;
 
 :export {
-  pink: $pink;
+  pro: $pro;
+  perso: $perso;
+  lab: $lab;
+  colorBackground: $colorBackground;
+  lineColorStart: $lineColorStart;
 }

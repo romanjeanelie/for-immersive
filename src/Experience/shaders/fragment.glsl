@@ -1,5 +1,11 @@
 uniform float uTime;
 
+uniform vec3 uColor;
+uniform vec3 uColorStart;
+uniform float uColorProgress;
+
+uniform float uOpacity;
+
 varying vec2 vUv;
 
 float PI = 3.1415926535897932384626433832795;
@@ -38,10 +44,11 @@ void main() {
 	float progressY = stroke(vUv.y, 0.5 + (progress * 0.5), .2);
 
 	// Final
-	vec3 colorFinal = vec3(1.0, 1.0, 1.0);
 	// colorFinal = mix(red, green, progressY);
 
 	float alpha = mix(0.1, 1.0, 1.);
 
-	gl_FragColor = vec4(colorFinal, alpha);
+	vec3 colorFinal = mix(uColorStart, uColor, uColorProgress);
+
+	gl_FragColor = vec4(colorFinal, uOpacity);
 }

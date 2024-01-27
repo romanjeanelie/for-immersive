@@ -7,7 +7,8 @@
 html,
 body {
   overflow: hidden;
-  color: white;
+  color: $colorMain;
+  height: 100%;
 }
 
 .experience {
@@ -20,8 +21,16 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.presentation {
+  position: absolute;
+  bottom: 40px;
+  left: 30px;
+  max-width: 730px;
+  font-size: 16px;
+  opacity: 0.8;
 }

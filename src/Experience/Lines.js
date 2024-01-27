@@ -1,13 +1,18 @@
+import projects from "../../projects.json";
+
 import Experience from "./Experience";
 import Line from "./Line";
 import Years from "./Years";
+import Point from "./Point";
 
-// Utils
-import { getDistance, getScaleY } from "./Utils/LinesUtils";
+// Shader
+import vertexShader from "./shaders/vertex.glsl";
+import fragmentShader from "./shaders/fragment.glsl";
+
+import { lineColorStart } from "@/scss/variables/_colors.module.scss";
 
 import * as THREE from "three";
 import gsap from "gsap";
-import projects from "../../projects.json";
 export default class Lines {
   constructor() {
     this.experience = new Experience();
@@ -38,14 +43,15 @@ export default class Lines {
 
     this.numberOfLines = projects.length - 1;
     this.positions = { x: 0, y: 0, z: 0 };
-    this.linesInstances = [];
     this.viewportSizes = { x: 0, y: 0 };
+
+    this.linesInstances = [];
+    this.points = [];
 
     if (this.debug) {
       this.debugFolder = this.debug.addFolder("lines");
     }
 
-    // this.debugPlane();
     this.computeViewportSizes();
 
     this.setYears();
@@ -58,23 +64,13 @@ export default class Lines {
 
   // TODO revert x and y for lines
   setPoints() {
-    this.domEl.style.transform = `scale(${this.groupConfig.target.scale.y}, ${this.groupConfig.target.scale.x})`;
+    this.domEl.style.width = `${100 * this.groupConfig.target.scale.y}%`;
+    this.domEl.style.height = `${100 * this.groupConfig.target.scale.x}%`;
+
+    // transform = `scale(${this.groupConfig.target.scale.y}, ${this.groupConfig.target.scale.x})`;
 
     // Create points
-    const points = [];
-    this.projects.forEach((project, i) => {
-      const distance = getDistance(i);
-      const scaleY = getScaleY(i);
-
-      const pointEl = document.createElement("span");
-      pointEl.classList.add("point");
-
-      pointEl.style.top = `${scaleY * 100}%`;
-      pointEl.style.left = `${distance * 100}%`;
-
-      this.domEl.appendChild(pointEl);
-      points.push(pointEl);
-    });
+    this.points = this.projects.map((project, i) => new Point({ project, i, domEl: this.domEl }));
   }
 
   setYears() {
@@ -85,7 +81,18 @@ export default class Lines {
     this.group = new THREE.Group();
 
     var tubeGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 32);
-    var cylinderMaterial = new THREE.MeshBasicMaterial({ color: this.lineColor });
+    // var cylinderMaterial = new THREE.MeshBasicMaterial({ color: this.lineColor });
+    var cylinderMaterial = new THREE.ShaderMaterial({
+      vertexShader,
+      fragmentShader,
+      uniforms: {
+        uColorStart: { value: new THREE.Color(lineColorStart) },
+        uColor: { value: new THREE.Color(0xffffff) },
+        uColorProgress: { value: 0 },
+        uOpacity: { value: 1 },
+      },
+      transparent: true,
+    });
 
     this.projects.forEach((project, i) => {
       const line = new Line({
@@ -95,6 +102,7 @@ export default class Lines {
         viewportSizes: this.viewportSizes,
         group: this.group,
         numberOfLines: this.numberOfLines,
+        project,
       });
 
       line.create();
@@ -117,6 +125,7 @@ export default class Lines {
   }
 
   startAnim() {
+    // Anim group
     gsap.to(this.amplitudeRotation, {
       value: 0,
       delay: 0.1,
@@ -148,20 +157,52 @@ export default class Lines {
     });
 
     // Anim points
-    gsap.to(".point", {
-      opacity: 1,
-      delay: 3.4,
-      duration: 3,
-      stagger: {
-        each: 0.04,
-        from: "center",
-        grid: "auto",
-        ease: "power2.inOut",
-      },
-    });
+    gsap.fromTo(
+      ".point",
+      { scale: 0 },
+      {
+        opacity: 1,
+        scale: 1,
+        delay: 4.5,
+        duration: 2,
+        ease: "back.out(4)",
+        stagger: {
+          each: 0.15,
+          from: "center",
+          grid: "auto",
+        },
+      }
+    );
 
     // Anim years
-    this.years.animIn({ delay: 3 });
+    this.years.animIn({ delay: 2.7 });
+
+    // Anim indicator
+    gsap.fromTo(
+      ".point__description--indicator",
+      { opacity: 0, xPercent: -10 },
+      {
+        xPercent: 0,
+        opacity: 1,
+        delay: 4,
+        duration: 3,
+        stagger: 0.1,
+        ease: "power2.out",
+      }
+    );
+
+    // Anim legends
+    gsap.fromTo(
+      ".bottom",
+      { opacity: 0, yPercent: 100 },
+      {
+        yPercent: 0,
+        opacity: 1,
+        delay: 5,
+        duration: 2,
+        ease: "expo.inOut",
+      }
+    );
   }
 
   goToFinalPosition() {
@@ -179,6 +220,10 @@ export default class Lines {
 
     this.linesInstances.forEach((line, i) => {
       line.goToFinalPosition();
+    });
+
+    this.points.forEach((point, i) => {
+      point.goToFinalPosition();
     });
   }
 

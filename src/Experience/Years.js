@@ -67,8 +67,8 @@ export default class Years {
     const actualDistance = 100 / this.years.length / 100;
     const factorWidth = distanceBetweenTwoYears / actualDistance;
     const newWidth = factorWidth * 100;
-    const tempWidth = 100;
-    console.log({ distanceBetweenTwoYears, actualDistance, newWidth });
+    // const tempWidth = 100;
+    // console.log({ distanceBetweenTwoYears, actualDistance, newWidth });
 
     this.yearsEl.style.left = `${offset}%`;
     this.widthTarget = newWidth;
@@ -77,20 +77,17 @@ export default class Years {
   }
 
   animIn({ delay }) {
-    console.log(this.widthTarget);
     gsap.fromTo(
       ".years",
       {
         opacity: 0,
         yPercent: -50,
-        width: "100%",
       },
       {
-        width: `${this.widthTarget}%`,
         opacity: 1,
         yPercent: 0,
         delay,
-        duration: 2.5,
+        duration: 3,
         ease: "power2.inOut",
       }
     );

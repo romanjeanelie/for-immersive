@@ -1,87 +1,96 @@
 [
 	{
-		"title": "Start learning code",
+		"title": "june 2020 \nstart learning code",
 		"date": "2020-06-01",
-		"type": "indicator"
+		"type": "indicator",
+		"top": -0.4
 	},
 	{
 		"title": "La langue des oiseaux dans le noir",
 		"date": "2020-09-01",
-		"type": "personal"
+		"type": "perso",
+		"top": -0.2
 	},
 	{
 		"title": "Tribute to beau",
 		"date": "2021-06-01",
-		"type": "personal"
+		"type": "perso",
+		"descriptionDirection": "left"
 	},
 	{
-		"title": "Creation of 2020' portfolio",
-		"date": "2021-09-01",
-		"type": "personal"
-	},
-	{
-		"title": "Start working for Impossible Bureau",
+		"title": "work for Impossible Bureau during 3 months",
 		"date": "2021-10-01",
-		"type": "personal"
+		"type": "indicator",
+		"top": -0.2
 	},
 	{
 		"title": "Possession Game",
 		"date": "2022-04-01",
-		"type": "pro"
-	},
-	{
-		"title": "Creation of Biotherm XP",
-		"date": "2022-05-01",
-		"type": "pro"
+		"type": "pro",
+		"descriptionDirection": "left",
+		"top": -0.2
 	},
 	{
 		"title": "Où est Jean-Luc",
 		"date": "2022-06-01",
-		"type": "personal"
+		"type": "perso"
 	},
 	{
-		"title": "Work for Mazarine during 1 year",
+		"title": "work for Mazarine during 1 year",
 		"date": "2022-08-01",
-		"type": "indicator"
+		"type": "indicator",
+		"top": -0.1
 	},
 	{
 		"title": "Coccinelle",
 		"date": "2022-12-01",
-		"type": "pro"
+		"type": "pro",
+		"descriptionDirection": "left",
+		"top": -0.2
 	},
 	{
 		"title": "Eau papier",
 		"date": "2023-02-01",
-		"type": "pro"
+		"type": "pro",
+		"top": -0.4
 	},
 	{
 		"title": "Gris Dior",
 		"date": "2023-06-01",
-		"type": "pro"
+		"type": "pro",
+		"top": -0.1
 	},
 	{
 		"title": "Personal portfolio",
 		"date": "2023-10-01",
-		"type": "personal"
+		"type": "perso",
+		"descriptionDirection": "left",
+		"top": 0.1
 	},
 	{
 		"title": "Snap scroll",
-		"date": "2023-11-14",
-		"type": "lab"
+		"date": "2023-11-23",
+		"type": "lab",
+		"descriptionDirection": "left",
+		"top": 0.6
 	},
 	{
 		"title": "Fur",
-		"date": "2023-11-15",
-		"type": "lab"
+		"date": "2023-11-23",
+		"type": "lab",
+		"top": 0.5
 	},
 	{
-		"title": "Experiment lens",
-		"date": "2024-01-09",
-		"type": "lab"
+		"title": "Lens",
+		"date": "2023-11-23",
+		"type": "lab",
+		"descriptionDirection": "left",
+		"top": 0.75
 	},
 	{
-		"title": "Blob + trail",
-		"date": "2024-01-10",
-		"type": "lab"
+		"title": "Blob",
+		"date": "2023-11-23",
+		"type": "lab",
+		"top": 0.4
 	}
 ]

@@ -28,13 +28,13 @@ export function getDistanceBetweenTwoYears(year1, year2) {
 export function getScaleY(i) {
   const project = projects[i];
   switch (project.type) {
-    case "personal":
-      return 0.5;
+    case "perso":
+      return 0.5 + (project.top ? project.top : 0);
     case "pro":
-      return 0.8;
+      return 0.8 + (project.top ? project.top : 0);
     case "lab":
-      return 0.3;
+      return 0.3 + (project.top ? project.top : 0);
     case "indicator":
-      return 1;
+      return 1 + (project.top ? project.top : 0);
   }
 }

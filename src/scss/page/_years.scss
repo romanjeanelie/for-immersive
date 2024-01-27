@@ -1,12 +1,10 @@
 .years {
-  color: white;
   display: flex;
   justify-content: space-between;
   width: 100%;
   position: absolute;
   top: 0;
   left: 0;
-  //   transform: translate3d(-50%, -100%, 0);
   transform: translateY(-100%);
   padding-bottom: 20px;
 }
@@ -14,7 +12,7 @@
 .year {
   position: relative;
   flex: 1;
-  opacity: 0.6;
+  opacity: 0.9;
 }
 
 .year__main {
@@ -25,19 +23,20 @@
   align-items: flex-start;
   flex-direction: column;
   text-align: center;
+  opacity: 0.5;
 }
 
 .year__line {
-  background: #d0cfcf;
+  background: $colorMain;
   width: 1px;
   height: 30px;
-  opacity: 1;
 }
 
 .year__label {
-  font-size: 14px;
+  font-size: 10px;
   margin-bottom: 8px;
-  opacity: 0.6;
+  opacity: 1;
+  transform: translateX(-50%);
 }
 
 .year__small-line-container {
@@ -46,20 +45,18 @@
   left: 0;
   width: 100%;
   height: 30px;
-  opacity: 0.6;
+  opacity: 1;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  //   transform: translateX(-100%);
 }
 .year__small-line {
-  background: white;
+  background: $colorMain;
   width: 1px;
   height: 10px;
-  opacity: 0.9;
+  opacity: 0.4;
 
   &:first-child {
-    background: red;
     opacity: 0;
   }
 
