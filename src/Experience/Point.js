@@ -82,7 +82,8 @@ export default class Point {
       //   ease: "back.out(1.5)",
     });
     gsap.to(this.circleEl, {
-      scale: 4,
+      width: "400%",
+      height: "400%",
       duration: 0.5,
       ease: "back.out(1.5)",
     });
@@ -100,7 +101,9 @@ export default class Point {
       scale: 1,
     });
     gsap.to(this.circleEl, {
-      scale: 1,
+      //   scale: 1,
+      width: "100%",
+      height: "100%",
     });
 
     // Description

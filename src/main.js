@@ -2,10 +2,12 @@ import Experience from "./Experience/Experience.js";
 import CopyButton from "./CopyButton.js";
 import projects from "@root/projects.json";
 
-const experience = new Experience({
+// Experience
+new Experience({
   targetElement: document.querySelector(".experience"),
 });
 
+// Copy button
 const textToCopy = projects
   .map((project) => {
     if (!project.url) return null;
@@ -15,5 +17,5 @@ const textToCopy = projects
   .join("\n\n");
 
 const buttonLinks = document.querySelector("#button-links");
+
 new CopyButton({ element: buttonLinks, text: textToCopy, successText: "COPIED", errorText: "" });
-console.log(textToCopy);

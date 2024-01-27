@@ -31,10 +31,7 @@ export default class CopyButton {
       })
       .catch((e) => {
         console.log(e);
-        this.textEl.textContent = this.errorText;
-        setTimeout(() => {
-          this.textEl.textContent = this.previousText;
-        }, 1000);
+        this.textEl.textContent = this.previousText;
       });
   }
 }

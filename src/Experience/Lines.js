@@ -58,8 +58,8 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    // this.startAnim();
-    this.goToFinalPosition();
+    this.startAnim();
+    // this.goToFinalPosition();
   }
 
   setPoints() {
@@ -139,7 +139,7 @@ export default class Lines {
       this.group.scale,
       {
         ...this.groupConfig.target.scale,
-        duration: 2,
+        duration: 4,
         ease: "power1.inOut",
       },
       "<"
