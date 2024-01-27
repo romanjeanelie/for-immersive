@@ -66,26 +66,35 @@ export default class Line {
       },
     });
 
+    // Progress
+    gsap.to(this.mesh.material.uniforms.uProgress, {
+      value: 1,
+      duration: 2,
+      ease: "power2.inOut",
+    });
+
     // Scale
     gsap.to(this.mesh.scale, {
       y: this.viewportSizes.y * this.target.scale.y,
-      delay: 2,
       duration: 2,
+      delay: 2,
       ease: "power2.inOut",
     });
     // To get on top
     gsap.to(this.mesh.position, {
       x: this.viewportSizes.y / 2 - (this.viewportSizes.y * this.target.scale.y) / 2,
-      delay: 2,
       duration: 2,
+      delay: 2,
+
       ease: "power2.inOut",
     });
 
     // Colors
     gsap.to(this.mesh.material.uniforms.uColorProgress, {
       value: 1,
-      delay: 2,
       duration: 2,
+      delay: 2,
+
       ease: "power2.inOut",
     });
   }
@@ -102,6 +111,9 @@ export default class Line {
     gsap.set(this.mesh.material.uniforms.uColorProgress, {
       value: 1,
     });
+    gsap.set(this.mesh.material.uniforms.uProgress, {
+      value: 1,
+    });
   }
 
   resize(viewportSizes) {
@@ -109,7 +121,8 @@ export default class Line {
     this.positionLine();
   }
 
-  update(amplitudeRotation) {
+  update(amplitudeRotation, time) {
     this.mesh.rotation.y = this.options.index * amplitudeRotation;
+    this.mesh.material.uniforms.uTime.value = time;
   }
 }

@@ -1,4 +1,5 @@
 uniform float uTime;
+uniform float uProgress;
 uniform vec2 uMouse;
 
 varying vec2 vUv;
@@ -28,6 +29,14 @@ float stroke(float x, float size, float w) {
 void main() {
 	vec3 newposition = position;
 
+    // Zone y
+	float zoneY = stroke(position.y, (0.), .2);
+
+    // Waves
+	float amplitude = 2. * (1. - uProgress);
+	float waves = cos((position.y) * PI * 0.25) * amplitude * zoneY;
+
+	newposition.x += waves;
 	gl_Position = projectionMatrix * modelViewMatrix * vec4(newposition, 1.0);
 
 	vUv = uv;

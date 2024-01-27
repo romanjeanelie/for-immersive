@@ -1,9 +1,22 @@
-$colorMain: rgb(236, 236, 236);
+$colorMain: #ddd8c4;
+$lineColorStart: #6d5f50;
+
+// +
+// $colorBackground: #111;
+// $pro: #bcbe64;
+// $perso: #7d8491;
+// $lab: #443850;
+
+// +
+// $colorBackground: #02020b;
+// $pro: #d36135;
+// $perso: #7eb06a;
+// $lab: #e6aa68;
+
 $colorBackground: #111;
-$lineColorStart: #662708;
-$pro: #935209;
-$perso: #7994ad;
-$lab: #978066;
+$pro: #f2c57c;
+$perso: #83b59f;
+$lab: #ef6f6c;
 
 :export {
   pro: $pro;

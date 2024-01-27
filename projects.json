@@ -3,22 +3,31 @@
 		"title": "june 2020 \nstart learning code",
 		"date": "2020-06-01",
 		"type": "indicator",
-		"top": -0.4
+		"top": -0.35
 	},
 	{
-		"title": "La langue des oiseaux dans le noir",
-		"date": "2020-09-01",
+		"title": "La prochaine fête",
+		"date": "2020-11-01",
 		"type": "perso",
-		"top": -0.2
+		"top": -0.2,
+		"url": "https://jolly-hamilton-52f78d.netlify.app/"
 	},
 	{
 		"title": "Tribute to beau",
-		"date": "2021-06-01",
+		"date": "2021-05-20",
 		"type": "perso",
-		"descriptionDirection": "left"
+		"descriptionDirection": "left",
+		"url": "https://www.tributetobeau.com/"
 	},
 	{
-		"title": "work for Impossible Bureau during 3 months",
+		"title": "2021' Portfolio",
+		"date": "2021-09-01",
+		"type": "perso",
+		"descriptionDirection": "left",
+		"url": "https://pfl1.netlify.app/"
+	},
+	{
+		"title": "\nstart working for \nImpossible Bureau \nduring 3 months",
 		"date": "2021-10-01",
 		"type": "indicator",
 		"top": -0.2
@@ -28,15 +37,17 @@
 		"date": "2022-04-01",
 		"type": "pro",
 		"descriptionDirection": "left",
-		"top": -0.2
+		"top": -0.2,
+		"url": "https://possession-game.com/"
 	},
 	{
 		"title": "Où est Jean-Luc",
 		"date": "2022-06-01",
-		"type": "perso"
+		"type": "perso",
+		"url": "https://www.ou-est-jean-luc.com/"
 	},
 	{
-		"title": "work for Mazarine during 1 year",
+		"title": "start working for \nMazarine \nduring 1 year",
 		"date": "2022-08-01",
 		"type": "indicator",
 		"top": -0.1
@@ -46,51 +57,59 @@
 		"date": "2022-12-01",
 		"type": "pro",
 		"descriptionDirection": "left",
-		"top": -0.2
+		"top": -0.2,
+		"url": "https://www.vancleefarpels.com/fr/fr/the-maison/the-heritage-gallery/ladybug.html"
 	},
 	{
 		"title": "Eau papier",
 		"date": "2023-02-01",
 		"type": "pro",
-		"top": -0.4
+		"top": -0.4,
+		"url": "https://eau-papier.diptyqueparis.com/fr_eu/"
 	},
 	{
 		"title": "Gris Dior",
 		"date": "2023-06-01",
 		"type": "pro",
-		"top": -0.1
+		"top": -0.1,
+		"url": "https://diorminisites-stg-wap01.azurewebsites.net/beauty/fr_fr/th/gris_dior.html"
 	},
 	{
-		"title": "Personal portfolio",
+		"title": "2023' portfolio",
 		"date": "2023-10-01",
 		"type": "perso",
 		"descriptionDirection": "left",
-		"top": 0.1
+		"top": 0.1,
+		"url": "https://romanjeanelie.com/"
 	},
 	{
-		"title": "Snap scroll",
-		"date": "2023-11-23",
+		"title": "Infinite slider",
+		"date": "2023-11-02",
 		"type": "lab",
 		"descriptionDirection": "left",
-		"top": 0.6
+		"top": 0.5,
+		"url": "https://infinite-slider-pink.vercel.app/"
 	},
 	{
-		"title": "Fur",
-		"date": "2023-11-23",
+		"title": "3D Fur",
+		"date": "2023-12-10",
 		"type": "lab",
-		"top": 0.5
-	},
-	{
-		"title": "Lens",
-		"date": "2023-11-23",
-		"type": "lab",
+		"top": 0.6,
 		"descriptionDirection": "left",
-		"top": 0.75
+		"url": "https://fur-theta.vercel.app/"
 	},
 	{
-		"title": "Blob",
-		"date": "2023-11-23",
+		"title": "3D Glass effect",
+		"date": "2024-01-09",
 		"type": "lab",
-		"top": 0.4
+		"top": 0.6,
+		"url": "https://glass-effect-m3wr.vercel.app/"
+	},
+	{
+		"title": "Trail effect",
+		"date": "2024-01-25",
+		"type": "lab",
+		"top": 0.5,
+		"url": "https://texture-plane.vercel.app"
 	}
 ]

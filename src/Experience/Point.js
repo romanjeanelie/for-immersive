@@ -41,7 +41,9 @@ export default class Point {
     this.containerEl.classList.add("point-container");
 
     // Point
-    this.pointEl = document.createElement("span");
+    this.pointEl = document.createElement("a");
+    this.pointEl.href = project.url;
+    this.pointEl.target = "_blank";
     this.pointEl.classList.add("point");
     this.pointEl.classList.add("point--" + project.type);
 
@@ -75,12 +77,12 @@ export default class Point {
     // Point
     gsap.killTweensOf(this.pointEl, this.circleEl, this.descriptionEl);
     gsap.to(this.pointEl, {
-      scale: 0.6,
+      scale: 0.8,
       duration: 0.5,
       //   ease: "back.out(1.5)",
     });
     gsap.to(this.circleEl, {
-      scale: 6,
+      scale: 4,
       duration: 0.5,
       ease: "back.out(1.5)",
     });
@@ -107,23 +109,13 @@ export default class Point {
     });
   }
 
-  animIn({ delay }) {
-    // gsap.to(".point", {
-    //   opacity: 1,
-    //   delay,
-    //   duration: 3,
-    //   stagger: {
-    //     each: 0.04,
-    //     from: "center",
-    //     grid: "auto",
-    //     ease: "power2.inOut",
-    //   },
-    // });
-  }
-
   goToFinalPosition() {
-    gsap.set([this.pointEl, this.descriptionEl], {
+    const { domEl, project, i } = this.options;
+    gsap.set(this.pointEl, {
       opacity: 1,
+    });
+    gsap.set(this.descriptionEl, {
+      opacity: project.type === "indicator" ? 1 : 0,
     });
   }
 }

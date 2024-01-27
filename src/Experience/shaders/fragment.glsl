@@ -1,4 +1,5 @@
 uniform float uTime;
+uniform float uProgress;
 
 uniform vec3 uColor;
 uniform vec3 uColorStart;
@@ -27,8 +28,6 @@ float aastep(float threshold, float value) {
 
 float stroke(float x, float size, float w) {
 	float d = smoothstep(size - 0.1, size + 0.1, x + w * .5) - smoothstep(size - 0.1, size + 0.1, x - w * .5);
-	// step(size, x - w * .5);
-	// aastep(size, x + w * .5) - aastep(size, x - w * .5);
 	return clamp(d, 0., 1.);
 }
 
@@ -36,19 +35,17 @@ void main() {
 	vec3 red = vec3(1.0, 0.0, 0.0);
 	vec3 green = vec3(0.0, 1.0, 0.0);
 
-	// Line
-	float line = stroke(vUv.x, 0.5, 1.);
-
 	// Progress y axis
-	float progress = sin(uTime * 0.0005);
-	float progressY = stroke(vUv.y, 0.5 + (progress * 0.5), .2);
+	// float progress = sin(uTime * 0.0005);
+	float progress = 0.15;
+	float progressY = stroke(vUv.y, 0.5 + (progress * 0.5), uProgress);
 
-	// Final
-	// colorFinal = mix(red, green, progressY);
+	// Line
+	float line = stroke(vUv.x, 0.5, .1);
 
 	float alpha = mix(0.1, 1.0, 1.);
 
 	vec3 colorFinal = mix(uColorStart, uColor, uColorProgress);
 
-	gl_FragColor = vec4(colorFinal, uOpacity);
+	gl_FragColor = vec4(colorFinal, progressY * uOpacity);
 }

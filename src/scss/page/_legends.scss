@@ -12,9 +12,11 @@ $legend-colors: (
 }
 
 .legends {
+  position: fixed;
+  bottom: 20px;
+  right: 0;
   display: flex;
   gap: 80px;
-  margin-left: auto;
   margin-right: 20%;
 }
 

@@ -53,28 +53,30 @@ $legend-colors: (
   transform: translate3d(-50%, -50%, 0);
   width: 100%;
   height: 100%;
-  border: 0.3px solid;
+  border: 0.1px solid;
   border-radius: 10px;
 }
 
 // Description
 .point__description {
   max-width: 100px;
-  margin-left: 10px;
+  margin-left: 20px;
   transform: translateY(-100%);
   opacity: 0;
-  font-size: 14px;
+  font-size: 12px;
+  text-transform: uppercase;
 
   &--left {
     transform: translateX(-100%) translateY(-100%);
     margin-left: 0px;
-    padding-right: 10px;
+    padding-right: 20px;
     text-align: right;
   }
 
   &--indicator {
     color: rgba(255, 255, 255, 0.5);
     max-width: 160px;
-    font-size: 14px;
+    font-size: 12px;
+    margin-left: 8px;
   }
 }

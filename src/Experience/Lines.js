@@ -31,7 +31,7 @@ export default class Lines {
     this.groupConfig = {
       start: {
         position: { x: 0, y: 0, z: 0 },
-        scale: { x: 0.9, y: 3.9, z: 1 },
+        scale: { x: 0.9, y: 3, z: 1 },
         rotation: { x: 0, y: 2, z: Math.PI * 0 },
       },
       target: {
@@ -90,6 +90,8 @@ export default class Lines {
         uColor: { value: new THREE.Color(0xffffff) },
         uColorProgress: { value: 0 },
         uOpacity: { value: 1 },
+        uTime: { value: 0 },
+        uProgress: { value: 0 },
       },
       transparent: true,
     });
@@ -125,31 +127,44 @@ export default class Lines {
   }
 
   startAnim() {
+    this.animPresentation();
+    const tl = gsap.timeline();
     // Anim group
-    gsap.to(this.amplitudeRotation, {
+    tl.to(this.amplitudeRotation, {
       value: 0,
-      delay: 0.1,
       duration: 7.3,
+      delay: 0.5,
+
       ease: "power2.out",
     });
-    gsap.to(this.group.scale, {
-      ...this.groupConfig.target.scale,
-      delay: 0.1,
-      duration: 3,
-      ease: "power1.inOut",
-    });
-    gsap.to(this.group.rotation, {
-      x: this.groupConfig.target.rotation.x,
-      y: this.groupConfig.target.rotation.y,
-      duration: 3,
-      ease: "power1.inOut",
-    });
-    gsap.to(this.group.rotation, {
-      z: this.groupConfig.target.rotation.z,
-      delay: 0.1,
-      duration: 2,
-      ease: "power2.inOut",
-    });
+    tl.to(
+      this.group.scale,
+      {
+        ...this.groupConfig.target.scale,
+        duration: 3,
+        ease: "power1.inOut",
+      },
+      "<"
+    );
+    tl.to(
+      this.group.rotation,
+      {
+        x: this.groupConfig.target.rotation.x,
+        y: this.groupConfig.target.rotation.y,
+        duration: 3,
+        ease: "power1.inOut",
+      },
+      "<"
+    );
+    tl.to(
+      this.group.rotation,
+      {
+        z: this.groupConfig.target.rotation.z,
+        duration: 2,
+        ease: "power2.inOut",
+      },
+      "<"
+    );
 
     // Anim Lines
     this.linesInstances.forEach((line, i) => {
@@ -157,21 +172,21 @@ export default class Lines {
     });
 
     // Anim points
-    gsap.fromTo(
+    tl.fromTo(
       ".point",
       { scale: 0 },
       {
         opacity: 1,
         scale: 1,
-        delay: 4.5,
         duration: 2,
-        ease: "back.out(4)",
+        ease: "power2.out",
         stagger: {
-          each: 0.15,
+          each: 0.1,
           from: "center",
           grid: "auto",
         },
-      }
+      },
+      "-=2.5"
     );
 
     // Anim years
@@ -180,12 +195,12 @@ export default class Lines {
     // Anim indicator
     gsap.fromTo(
       ".point__description--indicator",
-      { opacity: 0, xPercent: -10 },
+      { opacity: 0, xPercent: -30 },
       {
         xPercent: 0,
         opacity: 1,
         delay: 4,
-        duration: 3,
+        duration: 2,
         stagger: 0.1,
         ease: "power2.out",
       }
@@ -198,9 +213,24 @@ export default class Lines {
       {
         yPercent: 0,
         opacity: 1,
-        delay: 5,
+        delay: 4,
+        duration: 1.5,
+        ease: "power2.inOut",
+      }
+    );
+  }
+
+  animPresentation() {
+    gsap.fromTo(
+      [".presentation h1", ".presentation h2", ".presentation p"],
+      { opacity: 0, yPercent: -60 },
+      {
+        yPercent: 0,
+        opacity: 1,
+        stagger: 0.08,
+        delay: 4,
         duration: 2,
-        ease: "expo.inOut",
+        ease: "power2.inOut",
       }
     );
   }
@@ -248,7 +278,8 @@ export default class Lines {
 
   update() {
     this.linesInstances.forEach((line, i) => {
-      line.update(this.amplitudeRotation.value);
+      const time = this.experience.time.elapsed;
+      line.update(this.amplitudeRotation.value, time);
     });
   }
 
