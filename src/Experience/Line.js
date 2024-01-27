@@ -69,7 +69,7 @@ export default class Line {
     // Progress
     gsap.to(this.mesh.material.uniforms.uProgress, {
       value: 1,
-      duration: 2,
+      duration: 3,
       ease: "power2.inOut",
     });
 

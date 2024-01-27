@@ -9,7 +9,7 @@ import Point from "./Point";
 import vertexShader from "./shaders/vertex.glsl";
 import fragmentShader from "./shaders/fragment.glsl";
 
-import { lineColorStart } from "@/scss/variables/_colors.module.scss";
+import { lineColorStart, colorBackground } from "@/scss/variables/_colors.module.scss";
 
 import * as THREE from "three";
 import gsap from "gsap";
@@ -84,13 +84,14 @@ export default class Lines {
       fragmentShader,
       uniforms: {
         uColorStart: { value: new THREE.Color(lineColorStart) },
+        uColorBackground: { value: new THREE.Color(colorBackground) },
         uColor: { value: new THREE.Color(0xffffff) },
         uColorProgress: { value: 0 },
         uOpacity: { value: 1 },
         uTime: { value: 0 },
         uProgress: { value: 0 },
       },
-      transparent: true,
+      //   transparent: true,
     });
 
     this.projects.forEach((project, i) => {
@@ -188,7 +189,7 @@ export default class Lines {
     );
 
     // Anim years
-    this.years.animIn({ delay: 2.7 });
+    this.years.animIn({ delay: 5 });
 
     // Anim indicator
     gsap.fromTo(
@@ -211,7 +212,7 @@ export default class Lines {
       {
         yPercent: 0,
         opacity: 1,
-        delay: 4,
+        delay: 6,
         duration: 1.5,
         ease: "power2.inOut",
       }
@@ -220,15 +221,14 @@ export default class Lines {
 
   animPresentation() {
     gsap.fromTo(
-      [".presentation h1", ".presentation h2", ".presentation p"],
-      { opacity: 0, yPercent: -35 },
+      [".presentation"],
+      { opacity: 0, yPercent: 25 },
       {
         yPercent: 0,
         opacity: 1,
-        stagger: 0.1,
         delay: 5.5,
-        duration: 3,
-        ease: "power3.inOut",
+        duration: 2,
+        ease: "power2.inOut",
       }
     );
   }
