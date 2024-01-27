@@ -1,0 +1,48 @@
+$legend-colors: (
+  "pro": $pink,
+  "perso": $blue,
+  "lab": $brown,
+);
+
+.bottom {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+}
+
+.legends {
+  display: flex;
+  gap: 80px;
+  margin-left: auto;
+  margin-right: 20%;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+
+  &__circle {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  &__text {
+    font-size: 12px;
+    // opacity: 0.8;
+    text-transform: uppercase;
+  }
+
+  @each $type, $color in $legend-colors {
+    &--#{$type} > .legend__circle {
+      background: $color;
+    }
+
+    &--#{$type} > .legend__text {
+      color: $color;
+    }
+  }
+}

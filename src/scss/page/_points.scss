@@ -1,0 +1,11 @@
+.point {
+  display: block;
+  position: absolute;
+  background: #d0cfcf;
+  width: 7px;
+  height: 7px;
+  transform: translateX(-50%);
+  border-radius: 10px;
+  margin-top: 30px;
+  opacity: 0;
+}

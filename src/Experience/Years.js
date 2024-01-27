@@ -67,6 +67,8 @@ export default class Years {
     const actualDistance = 100 / this.years.length / 100;
     const factorWidth = distanceBetweenTwoYears / actualDistance;
     const newWidth = factorWidth * 100;
+    const tempWidth = 100;
+    console.log({ distanceBetweenTwoYears, actualDistance, newWidth });
 
     this.yearsEl.style.left = `${offset}%`;
     this.widthTarget = newWidth;

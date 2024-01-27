@@ -1,43 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  overflow: hidden;
-  color: white;
-}
-
-.experience {
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-}
-
-.dom {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-}
-
-.point {
-  display: block;
-  position: absolute;
-  background: #d0cfcf;
-  width: 7px;
-  height: 7px;
-  transform: translateX(-50%);
-  border-radius: 10px;
-  margin-top: 30px;
-  opacity: 0;
-}
-
 .years {
   color: white;
   display: flex;
@@ -106,33 +66,4 @@ body {
   &:last-child {
     opacity: 0;
   }
-}
-
-.bottom {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  border: 1px solid red;
-  display: flex;
-  display: none;
-}
-
-.legends {
-  display: flex;
-  margin-left: auto;
-  margin-right: 30%;
-}
-
-.legend {
-  display: flex;
-  align-items: center;
-}
-
-.legend__circle {
-  display: block;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: red;
-  margin-right: 10px;
 }

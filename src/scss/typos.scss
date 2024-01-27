@@ -1,0 +1,130 @@
+// Fonts
+@font-face {
+  font-family: "fubiox";
+  src: url("/fonts/Fubiox.woff2");
+}
+@font-face {
+  font-family: "MursGothic";
+  src: url("/fonts/MursGothic-WideDark.woff2");
+}
+@font-face {
+  font-family: "Raligur";
+  src: url("/fonts/Raligur.woff2");
+}
+@font-face {
+  font-family: "Raligur";
+  src: url("/fonts/Raligur.woff2");
+}
+@font-face {
+  font-family: "Amoria";
+  src: url("/fonts/Amoria.woff2");
+}
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans.woff2");
+}
+@font-face {
+  font-family: "DTNightingale-Light";
+  src: url("/fonts/DTNightingale-Light.woff2");
+}
+@font-face {
+  font-family: "Suisse_Int";
+  src: url("/fonts/Suisse_Int.woff2");
+}
+@font-face {
+  font-family: "Outward";
+  src: url("/fonts/Outward.woff2");
+}
+@font-face {
+  font-family: "Soria";
+  src: url("/fonts/Soria.woff2");
+}
+@font-face {
+  font-family: "Rebeqa-Black";
+  src: url("/fonts/Rebeqa-Black.woff2");
+}
+@font-face {
+  font-family: "KenokyLight";
+  src: url("/fonts/Rebeqa-Black.woff2");
+}
+
+// ++
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Light.woff2");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-LightItalic.woff2");
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Italic.woff2");
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Medium.woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-MediumItalic.woff2");
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Regular.woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Humane-Medium";
+  src: url("/fonts/Humane-Medium.woff2");
+}
+@font-face {
+  font-family: "Humane-Regular";
+  src: url("/fonts/Humane-Regular.woff2");
+}
+@font-face {
+  font-family: "Humane-Light";
+  src: url("/fonts/Humane-Light.woff2");
+}
+@font-face {
+  font-family: "EBGaramond";
+  src: url("/fonts/EBGaramond.woff2");
+}
+
+html {
+  font-size: vw(21);
+  letter-spacing: 0.01em;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+  font-family: Satoshi;
+  font-weight: 400;
+}
+
+// @include media('<tablet') {
+//   html {
+//     font-size: vwM(12);
+//   }
+// }
+// @include media('<phone') {
+//   html {
+//     font-size: vwM(12);
+//   }
+// }
