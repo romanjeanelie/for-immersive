@@ -4,7 +4,7 @@ import { getDistanceBetweenTwoYears, getDistanceProjectByYear } from "./Utils/Li
 
 export default class Years {
   constructor(options) {
-    this.years = ["2021", "2022", "2023", "2024"];
+    this.years = ["2020", "2021", "2022", "2023", "2024"];
 
     this.domEl = options.domEl;
     this.projects = projects;
@@ -60,8 +60,8 @@ export default class Years {
   }
 
   positionYears() {
-    const distanceFrom2021 = getDistanceProjectByYear("2021");
-    const offset = gsap.utils.mapRange(0, 1, 0, 100, distanceFrom2021);
+    const distanceFromFirstYear = getDistanceProjectByYear(this.years[0]);
+    const offset = gsap.utils.mapRange(0, 1, 0, 100, distanceFromFirstYear);
 
     const distanceBetweenTwoYears = getDistanceBetweenTwoYears("2022", "2021");
     const actualDistance = 100 / this.years.length / 100;
@@ -70,6 +70,8 @@ export default class Years {
 
     this.yearsEl.style.left = `${offset}%`;
     this.widthTarget = newWidth;
+
+    this.yearsEl.style.width = `${this.widthTarget}%`;
   }
 
   animIn({ delay }) {

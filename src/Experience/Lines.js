@@ -52,8 +52,8 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    this.startAnim();
-    // this.goToFinalPosition();
+    // this.startAnim();
+    this.goToFinalPosition();
   }
 
   // TODO revert x and y for lines
