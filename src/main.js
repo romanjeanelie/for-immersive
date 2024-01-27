@@ -9,7 +9,7 @@ const experience = new Experience({
 const textToCopy = projects
   .map((project) => {
     if (!project.url) return null;
-    return `[${project.title}](${project.url})`;
+    return `[${project.title}](${project.url}) -  [ ${project.type} ]`;
   })
   .filter(Boolean)
   .join("\n\n");
