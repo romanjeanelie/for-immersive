@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import Experience from "./Experience.js";
-import Triangle from "./Triangle.js";
 import Lines from "./Lines.js";
 
 export default class World {
@@ -10,11 +9,7 @@ export default class World {
     this.scene = this.experience.scene;
     this.resources = this.experience.resources;
 
-    this.resources.on("groupEnd", (_group) => {
-      if (_group.name === "base") {
-        this.setLines();
-      }
-    });
+    this.setLines();
   }
 
   setLines() {

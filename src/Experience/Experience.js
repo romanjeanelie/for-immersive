@@ -5,12 +5,9 @@ import Time from "./Utils/Time.js";
 import Sizes from "./Utils/Sizes.js";
 import Stats from "./Utils/Stats.js";
 
-import Resources from "./Resources.js";
 import Renderer from "./Renderer.js";
 import Camera from "./Camera.js";
 import World from "./World.js";
-
-import assets from "./assets.js";
 
 export default class Experience {
   static instance;
@@ -37,7 +34,6 @@ export default class Experience {
     this.setScene();
     this.setCamera();
     this.setRenderer();
-    this.setResources();
     this.setWorld();
 
     this.sizes.on("resize", () => {
@@ -88,12 +84,10 @@ export default class Experience {
     this.targetElement.appendChild(this.renderer.instance.domElement);
   }
 
-  setResources() {
-    this.resources = new Resources(assets);
-  }
-
   setWorld() {
-    this.world = new World();
+    window.requestAnimationFrame(() => {
+      this.world = new World();
+    });
   }
 
   update() {

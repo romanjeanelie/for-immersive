@@ -58,7 +58,7 @@ export default class Line {
   animIn() {
     gsap.to(this.mesh.position, {
       y: this.target.position.y,
-      delay: 2.6,
+      delay: 3.6,
       duration: 3,
       ease: "expo.inOut",
       onComplete: () => {

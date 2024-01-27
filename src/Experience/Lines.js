@@ -1,4 +1,4 @@
-import projects from "../../projects.json";
+import projects from "@root/projects.json";
 
 import Experience from "./Experience";
 import Line from "./Line";
@@ -58,16 +58,13 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    this.startAnim();
-    // this.goToFinalPosition();
+    // this.startAnim();
+    this.goToFinalPosition();
   }
 
-  // TODO revert x and y for lines
   setPoints() {
     this.domEl.style.width = `${100 * this.groupConfig.target.scale.y}%`;
     this.domEl.style.height = `${100 * this.groupConfig.target.scale.x}%`;
-
-    // transform = `scale(${this.groupConfig.target.scale.y}, ${this.groupConfig.target.scale.x})`;
 
     // Create points
     this.points = this.projects.map((project, i) => new Point({ project, i, domEl: this.domEl }));
@@ -142,7 +139,7 @@ export default class Lines {
       this.group.scale,
       {
         ...this.groupConfig.target.scale,
-        duration: 3,
+        duration: 2,
         ease: "power1.inOut",
       },
       "<"
@@ -187,7 +184,7 @@ export default class Lines {
           grid: "auto",
         },
       },
-      "-=1.5"
+      "-=2.5"
     );
 
     // Anim years
@@ -196,14 +193,14 @@ export default class Lines {
     // Anim indicator
     gsap.fromTo(
       ".point__description--indicator",
-      { opacity: 0, xPercent: -30 },
+      { opacity: 0, xPercent: -20 },
       {
         xPercent: 0,
         opacity: 1,
-        delay: 4,
-        duration: 2,
+        delay: 3.5,
+        duration: 3,
         stagger: 0.1,
-        ease: "power2.out",
+        ease: "expo.inOut",
       }
     );
 
@@ -237,6 +234,8 @@ export default class Lines {
   }
 
   goToFinalPosition() {
+    document.body.classList.remove("loading");
+
     this.group.scale.set(
       this.groupConfig.target.scale.x,
       this.groupConfig.target.scale.y,
