@@ -1,22 +1,30 @@
 import Experience from "./Experience";
+import Line from "./Line";
+import Years from "./Years";
+
 import * as THREE from "three";
 import gsap from "gsap";
 import projects from "../../projects.json";
 export default class Lines {
   constructor() {
+    this.experience = new Experience();
+    this.debug = this.experience.debug;
+    this.scene = this.experience.scene;
+    this.camera = this.experience.camera;
+
     this.projects = projects;
-    this.isAnimComplete = false;
 
     // DOM
     this.domEl = document.querySelector(".dom");
 
     // Config
+    this.lineColor = "#d0cfcf";
     this.amplitudeRotation = { value: 0.3 };
     this.groupConfig = {
       start: {
         position: { x: 0, y: 0, z: 0 },
-        scale: { x: 0.9, y: 0.9, z: 0.9 },
-        rotation: { x: 0, y: 4, z: Math.PI * 0 },
+        scale: { x: 0.9, y: 3.9, z: 1 },
+        rotation: { x: 0, y: 2, z: Math.PI * 0 },
       },
       target: {
         position: { x: 0, y: 0, z: 0 },
@@ -27,13 +35,8 @@ export default class Lines {
 
     this.numberOfLines = projects.length - 1;
     this.positions = { x: 0, y: 0, z: 0 };
-    this.rows = [];
+    this.linesInstances = [];
     this.viewportSizes = { x: 0, y: 0 };
-
-    this.experience = new Experience();
-    this.debug = this.experience.debug;
-    this.scene = this.experience.scene;
-    this.camera = this.experience.camera;
 
     if (this.debug) {
       this.debugFolder = this.debug.addFolder("lines");
@@ -41,18 +44,21 @@ export default class Lines {
 
     // this.debugPlane();
     this.computeViewportSizes();
-    this.updateDOM();
+
+    this.setPoints();
+    this.setYears();
     this.setInstance();
+
     this.startAnim();
   }
 
   // TODO revert x and y for lines
-  updateDOM() {
+  setPoints() {
     this.domEl.style.transform = `scale(${this.groupConfig.target.scale.y}, ${this.groupConfig.target.scale.x})`;
 
     // Create points
     const points = [];
-    this.projects.forEach((row, i) => {
+    this.projects.forEach((_, i) => {
       const pointEl = document.createElement("span");
       pointEl.classList.add("point");
 
@@ -67,24 +73,30 @@ export default class Lines {
     });
   }
 
-  setInstance() {
-    var cylinderColor = "#d0cfcf";
+  setYears() {
+    this.yearsDOM = new Years();
+  }
 
+  setInstance() {
     this.group = new THREE.Group();
 
     var tubeGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 32);
-
-    var cylinderMaterial = new THREE.MeshBasicMaterial({ color: cylinderColor });
+    var cylinderMaterial = new THREE.MeshBasicMaterial({ color: this.lineColor });
 
     this.projects.forEach((project, i) => {
-      var cylinder = new THREE.Mesh(tubeGeometry, cylinderMaterial);
-      cylinder.rotation.z = (90 * Math.PI) / 180;
-      cylinder.position.z = this.positions.z;
+      const line = new Line({
+        index: i,
+        geometry: tubeGeometry,
+        material: cylinderMaterial,
+        viewportSizes: this.viewportSizes,
+        group: this.group,
+        numberOfLines: this.numberOfLines,
+      });
 
-      this.rows.push({ mesh: cylinder });
-      this.group.add(cylinder);
+      line.create();
+
+      this.linesInstances.push(line);
     });
-    this.positionLines();
 
     this.group.scale.set(
       this.groupConfig.start.scale.x,
@@ -127,31 +139,8 @@ export default class Lines {
     });
 
     // Move
-    this.rows.forEach((row, i) => {
-      gsap.to(row.mesh.position, {
-        y: row.target.position.y,
-        delay: 2.6,
-        duration: 3,
-        ease: "expo.inOut",
-        onComplete: () => {
-          this.isAnimComplete = true;
-        },
-      });
-
-      // Scale
-      gsap.to(row.mesh.scale, {
-        y: this.viewportSizes.y * row.target.scale.y,
-        delay: 2,
-        duration: 2,
-        ease: "power2.inOut",
-      });
-      // To get on top
-      gsap.to(row.mesh.position, {
-        x: this.viewportSizes.y / 2 - (this.viewportSizes.y * row.target.scale.y) / 2,
-        delay: 2,
-        duration: 2,
-        ease: "power2.inOut",
-      });
+    this.linesInstances.forEach((line, i) => {
+      line.animIn();
     });
 
     // show points
@@ -160,7 +149,6 @@ export default class Lines {
       delay: 3.4,
       duration: 3,
       stagger: {
-        // wrap advanced options in an object
         each: 0.04,
         from: "center",
         grid: "auto",
@@ -195,20 +183,6 @@ export default class Lines {
     }
   }
 
-  positionLines() {
-    this.rows.forEach((row, i) => {
-      const distance = this.getDistance(i);
-      const posY = gsap.utils.mapRange(1, 0, -this.viewportSizes.x, this.viewportSizes.x, i / this.numberOfLines) * 0.5;
-      const posYTarget = gsap.utils.mapRange(1, 0, -this.viewportSizes.x, this.viewportSizes.x, distance) * 0.5;
-
-      const scaleY = this.getScaleY(i);
-      row.targetY = posYTarget;
-      row.target = { position: { y: posYTarget }, scale: { y: scaleY } };
-
-      row.mesh.scale.y = this.viewportSizes.y;
-      row.mesh.position.y = this.isAnimComplete ? row.targetY : posY;
-    });
-  }
   computeViewportSizes() {
     const distance = Math.abs(this.positions.z - this.camera.instance.position.z);
     const verticalFOV = this.camera.instance.fov * (Math.PI / 180);
@@ -223,12 +197,14 @@ export default class Lines {
 
   resize() {
     this.computeViewportSizes();
-    this.positionLines();
+    this.linesInstances.forEach((line, i) => {
+      line.resize(this.viewportSizes);
+    });
   }
 
   update() {
-    this.rows.forEach((row, i) => {
-      row.mesh.rotation.y = i * this.amplitudeRotation.value;
+    this.linesInstances.forEach((line, i) => {
+      line.update(this.amplitudeRotation.value);
     });
   }
 
