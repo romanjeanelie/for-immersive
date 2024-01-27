@@ -51,8 +51,11 @@ export default class Line {
     this.targetY = posYTarget;
     this.target = { position: { y: posYTarget }, scale: { y: scaleY } };
 
-    this.mesh.scale.y = this.viewportSizes.y;
+    this.mesh.scale.y = this.isAnimComplete ? this.viewportSizes.y * this.target.scale.y : this.viewportSizes.y;
     this.mesh.position.y = this.isAnimComplete ? this.targetY : posY;
+    if (index === 0) {
+      console.log(this.isAnimComplete, this.viewportSizes.y, this.target.scale.y);
+    }
   }
 
   animIn() {
@@ -100,6 +103,8 @@ export default class Line {
   }
 
   goToFinalPosition() {
+    this.isAnimComplete = true;
+
     this.mesh.position.set(
       this.viewportSizes.y / 2 - (this.viewportSizes.y * this.target.scale.y) / 2,
       this.target.position.y,
@@ -114,6 +119,10 @@ export default class Line {
     gsap.set(this.mesh.material.uniforms.uProgress, {
       value: 1,
     });
+
+    if (this.options.index === 0) {
+      console.log("final", this.viewportSizes.y, this.target.scale.y);
+    }
   }
 
   resize(viewportSizes) {

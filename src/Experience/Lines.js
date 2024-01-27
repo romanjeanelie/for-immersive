@@ -27,7 +27,7 @@ export default class Lines {
 
     // Config
     this.lineColor = "#d0cfcf";
-    this.amplitudeRotation = { value: 0.3 };
+    this.amplitudeRotation = { value: 0.5 };
     this.groupConfig = {
       start: {
         position: { x: 0, y: 0, z: 0 },
@@ -58,8 +58,8 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    // this.startAnim();
-    this.goToFinalPosition();
+    this.startAnim();
+    // this.goToFinalPosition();
   }
 
   // TODO revert x and y for lines
@@ -208,7 +208,7 @@ export default class Lines {
 
     // Anim legends
     gsap.fromTo(
-      ".bottom",
+      [".legends", ".buttons"],
       { opacity: 0, yPercent: 100 },
       {
         yPercent: 0,
@@ -227,10 +227,10 @@ export default class Lines {
       {
         yPercent: 0,
         opacity: 1,
-        stagger: 0.08,
-        delay: 4,
-        duration: 2,
-        ease: "power2.inOut",
+        stagger: 0.1,
+        delay: 6,
+        duration: 3,
+        ease: "power3.inOut",
       }
     );
   }
