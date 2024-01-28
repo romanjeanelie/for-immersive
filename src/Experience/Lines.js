@@ -1,13 +1,13 @@
 import projects from "@root/projects.json";
 
-import Experience from "./Experience";
-import Line from "./Line";
-import Years from "./Years";
-import Point from "./Point";
+import Experience from "@/Experience/Experience";
+import Line from "@/Experience/Line";
+import Years from "@/Experience/Years";
+import Point from "@/Experience/Point";
 
 // Shader
-import vertexShader from "./shaders/vertex.glsl";
-import fragmentShader from "./shaders/fragment.glsl";
+import vertexShader from "@/Experience/shaders/vertex.glsl";
+import fragmentShader from "@/Experience/shaders/fragment.glsl";
 
 import { lineColorStart, colorBackground } from "@/scss/variables/_colors.module.scss";
 

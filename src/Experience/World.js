@@ -1,6 +1,6 @@
 import * as THREE from "three";
-import Experience from "./Experience.js";
-import Lines from "./Lines.js";
+import Experience from "@/Experience/Experience.js";
+import Lines from "@/Experience/Lines.js";
 
 export default class World {
   constructor(_options) {

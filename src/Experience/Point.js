@@ -1,5 +1,5 @@
 // Utils
-import { getDistance, getScaleY } from "./Utils/LinesUtils";
+import { getDistance, getScaleY } from "@/Experience/Utils/LinesUtils";
 
 import gsap from "gsap";
 

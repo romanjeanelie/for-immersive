@@ -1,5 +1,5 @@
-import Experience from "./Experience/Experience.js";
-import CopyButton from "./CopyButton.js";
+import Experience from "@/Experience/Experience.js";
+import CopyButton from "@/CopyButton.js";
 import projects from "@root/projects.json";
 
 // Experience

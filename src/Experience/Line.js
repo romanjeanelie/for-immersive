@@ -1,8 +1,9 @@
 import * as THREE from "three";
 import gsap from "gsap";
 import colors from "@/scss/variables/_colors.module.scss";
+
 // Utils
-import { getDistance, getScaleY } from "./Utils/LinesUtils";
+import { getDistance, getScaleY } from "@/Experience/Utils/LinesUtils";
 
 export default class Line {
   constructor(options) {

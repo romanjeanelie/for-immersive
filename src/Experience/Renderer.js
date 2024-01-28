@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import Experience from "./Experience.js";
+import Experience from "@/Experience/Experience.js";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
 import { colorBackground } from "@/scss/variables/_colors.module.scss";

@@ -1,4 +1,4 @@
-import projects from "../../../projects.json";
+import projects from "@root/projects.json";
 
 export function getDistance(i) {
   const firstProject = projects[0];

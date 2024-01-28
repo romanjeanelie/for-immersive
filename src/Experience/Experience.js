@@ -1,13 +1,13 @@
 import * as THREE from "three";
 import GUI from "lil-gui";
 
-import Time from "./Utils/Time.js";
-import Sizes from "./Utils/Sizes.js";
-import Stats from "./Utils/Stats.js";
+import Time from "@/Experience/Utils/Time.js";
+import Sizes from "@/Experience/Utils/Sizes.js";
+import Stats from "@/Experience/Utils/Stats.js";
 
-import Renderer from "./Renderer.js";
-import Camera from "./Camera.js";
-import World from "./World.js";
+import Renderer from "@/Experience/Renderer.js";
+import Camera from "@/Experience/Camera.js";
+import World from "@/Experience/World.js";
 
 export default class Experience {
   static instance;
