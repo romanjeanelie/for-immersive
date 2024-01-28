@@ -16,7 +16,25 @@ $buttonSize: 40px;
   @include media("<phone") {
     // remove anims
     opacity: 1 !important;
-    transform: unset !important;
+    transform: translate(50%, 50%) !important;
+
+    bottom: 50%;
+    right: 50%;
+    padding-right: unset;
+    min-width: 65vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.buttons__mobile-warning {
+  display: none;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 8px;
+  @include media("<phone") {
+    display: block;
   }
 }
 
