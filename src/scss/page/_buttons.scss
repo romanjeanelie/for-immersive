@@ -12,6 +12,12 @@ $buttonSize: 40px;
   justify-content: center;
   align-items: flex-end;
   flex-direction: column;
+
+  @include media("<phone") {
+    // remove anims
+    opacity: 1 !important;
+    transform: unset !important;
+  }
 }
 
 .button {
