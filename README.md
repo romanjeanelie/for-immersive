@@ -2,7 +2,7 @@
 
 ## Description
 
-Here's a small timeline I created over the weekend to showcase the projects I've worked on for the IG team.
+Here's a small timeline I created  over the weekend for the IG team to showcase the projects I've worked on.
 
 ## Installation
 
