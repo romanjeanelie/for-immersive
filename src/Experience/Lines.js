@@ -27,7 +27,7 @@ export default class Lines {
 
     // Config
     this.lineColor = "#d0cfcf";
-    this.amplitudeRotation = { value: 0.9 };
+    this.amplitudeRotation = { value: 0.3 };
     this.groupConfig = {
       start: {
         position: { x: 0, y: 0, z: 0 },
