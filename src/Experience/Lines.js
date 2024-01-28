@@ -59,8 +59,8 @@ export default class Lines {
     this.setPoints();
     this.setLines();
 
-    // this.startAnim();
-    this.goToFinalPosition();
+    this.startAnim();
+    // this.goToFinalPosition();
   }
 
   setDOM() {
