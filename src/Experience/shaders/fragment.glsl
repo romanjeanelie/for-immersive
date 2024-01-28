@@ -16,7 +16,7 @@ float stroke(float x, float size, float w) {
 }
 
 void main() {
-	float progressY = stroke(vUv.y, 0.5, uProgress);
+	float progressY = stroke(vUv.y, 0.575, uProgress);
 
 	float alpha = progressY * uOpacity;
 
