@@ -2,7 +2,11 @@
 
 ## Description
 
-Here's a small timeline I created  over the weekend for the IG team to showcase the projects I've worked on.
+Here's a small timeline I created over the weekend for the IG team to showcase the projects I've worked on.
+
+## Live Demo
+
+You can see the project live [here](https://for-immersive.vercel.app/).
 
 ## Installation
 
