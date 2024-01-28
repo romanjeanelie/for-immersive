@@ -2,15 +2,14 @@
 
 ## Description
 
-Here's a small timeline I did during a weekend to show the projects I've worked on.
+Here's a small timeline I created over the weekend to showcase the projects I've worked on for the IG team.
 
 ## Installation
 
 To install the project, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/username/repository.git`
-2. Navigate to the project directory: `cd repository`
-3. Install the dependencies: `npm install`
+1. Clone the repository.
+2. Install the dependencies: `npm install`
 
 ## Usage
 

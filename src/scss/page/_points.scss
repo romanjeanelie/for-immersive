@@ -16,14 +16,12 @@ $legend-colors: (
   height: 10px;
   transform: translateX(-50%);
   border-radius: 10px;
-  //   margin-top: 16px;
   opacity: 0;
   cursor: pointer;
 
   @each $type, $color in $legend-colors {
     &--#{$type} {
       background: $color;
-      //   background: $color;
       & > .point__circle {
         border-color: $color;
       }
