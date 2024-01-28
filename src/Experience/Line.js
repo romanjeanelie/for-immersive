@@ -81,7 +81,7 @@ export default class Line {
       delay: 2,
       ease: "power2.inOut",
     });
-    // To get on top
+    // to stay on top during the scale
     gsap.to(this.mesh.position, {
       x: this.viewportSizes.y / 2 - (this.viewportSizes.y * this.target.scale.y) / 2,
       duration: 2,

@@ -54,19 +54,21 @@ export default class Lines {
 
     this.computeViewportSizes();
 
+    this.setDOM();
     this.setYears();
     this.setPoints();
-    this.setInstance();
+    this.setLines();
 
-    this.startAnim();
-    // this.goToFinalPosition();
+    // this.startAnim();
+    this.goToFinalPosition();
+  }
+
+  setDOM() {
+    this.domEl.style.width = `${100 * this.groupConfig.target.scale.y}%`;
+    this.domEl.style.height = `${100 * this.groupConfig.target.scale.x}%`;
   }
 
   setPoints() {
-    this.domEl.style.width = `${100 * this.groupConfig.target.scale.y}%`;
-    this.domEl.style.height = `${100 * this.groupConfig.target.scale.x}%`;
-
-    // Create points
     this.points = this.projects.map((project, i) => new Point({ project, i, domEl: this.domEl }));
   }
 
@@ -74,12 +76,11 @@ export default class Lines {
     this.years = new Years({ domEl: this.domEl });
   }
 
-  setInstance() {
+  setLines() {
     this.group = new THREE.Group();
 
-    var tubeGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 32);
-    // var cylinderMaterial = new THREE.MeshBasicMaterial({ color: this.lineColor });
-    var cylinderMaterial = new THREE.ShaderMaterial({
+    var lineGeometry = new THREE.CylinderGeometry(0.05, 0.05, 1, 32);
+    var lineMaterial = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,
       uniforms: {
@@ -91,14 +92,13 @@ export default class Lines {
         uTime: { value: 0 },
         uProgress: { value: 0 },
       },
-      //   transparent: true,
     });
 
     this.projects.forEach((project, i) => {
       const line = new Line({
         index: i,
-        geometry: tubeGeometry,
-        material: cylinderMaterial,
+        geometry: lineGeometry,
+        material: lineMaterial,
         viewportSizes: this.viewportSizes,
         group: this.group,
         numberOfLines: this.numberOfLines,
@@ -126,8 +126,9 @@ export default class Lines {
 
   startAnim() {
     document.body.classList.remove("loading");
-    this.animPresentation();
+
     const tl = gsap.timeline();
+
     // Anim group
     tl.to(this.amplitudeRotation, {
       value: 0,
@@ -217,9 +218,8 @@ export default class Lines {
         ease: "power2.inOut",
       }
     );
-  }
 
-  animPresentation() {
+    // Anim presentation
     gsap.fromTo(
       [".presentation"],
       { opacity: 0, yPercent: 25 },
