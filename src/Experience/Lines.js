@@ -27,7 +27,7 @@ export default class Lines {
 
     // Config
     this.lineColor = "#d0cfcf";
-    this.amplitudeRotation = { value: 0.5 };
+    this.amplitudeRotation = { value: 0.9 };
     this.groupConfig = {
       start: {
         position: { x: 0, y: 0, z: 0 },
@@ -58,8 +58,8 @@ export default class Lines {
     this.setPoints();
     this.setInstance();
 
-    this.startAnim();
-    // this.goToFinalPosition();
+    // this.startAnim();
+    this.goToFinalPosition();
   }
 
   setPoints() {

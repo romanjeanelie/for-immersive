@@ -8,8 +8,8 @@
 	{
 		"title": "La prochaine fête",
 		"date": "2020-11-01",
-		"type": "perso",
-		"top": -0.2,
+		"type": "lab",
+		"top": 0,
 		"url": "https://jolly-hamilton-52f78d.netlify.app/"
 	},
 	{
@@ -47,7 +47,7 @@
 		"url": "https://www.ou-est-jean-luc.com/"
 	},
 	{
-		"title": "start working for \nMazarine \nfor 1 year",
+		"title": "start working for \nMazarine for 1 year",
 		"date": "2022-08-01",
 		"type": "indicator",
 		"top": -0.1

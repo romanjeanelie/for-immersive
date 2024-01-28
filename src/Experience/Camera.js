@@ -14,7 +14,7 @@ export default class Camera {
     this.scene = this.experience.scene;
 
     // Set up
-    this.mode = "debug"; // defaultCamera \ debugCamera
+    this.mode = "default"; // defaultCamera \ debugCamera
 
     this.setInstance();
     this.setModes();
@@ -35,6 +35,7 @@ export default class Camera {
     this.modes.default = {};
     this.modes.default.instance = this.instance.clone();
     this.modes.default.instance.rotation.reorder("YXZ");
+    this.modes.default.instance.position.set(0, 0, 100);
 
     // Debug
     this.modes.debug = {};
