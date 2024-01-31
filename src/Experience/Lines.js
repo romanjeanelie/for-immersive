@@ -174,19 +174,19 @@ export default class Lines {
     // Anim points
     tl.fromTo(
       ".point",
-      { scale: 0 },
+      { scale: 0, opacity: 1 },
       {
         opacity: 1,
         scale: 1,
-        duration: 1.4,
+        duration: 2.5,
         ease: "power2.out",
         stagger: {
-          each: 0.1,
+          each: 0.25,
           from: "center",
           grid: "auto",
         },
       },
-      "-=2.5"
+      "-=2"
     );
 
     // Anim years
